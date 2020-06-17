@@ -1,30 +1,32 @@
 package com.icl.html_engine.service.proxy;
 
-import lombok.SneakyThrows;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-@Component
+@Service
 public class VariableEvaluatorImpl implements IVariableEvaluator {
     @Override
-    public String evaluate(List<String> variableInvocationList, Object attribute) throws InvocationTargetException, IllegalAccessException {
-        Object result = String.join("\\.", variableInvocationList);
+    public String evaluate(List<String> variableInvocationList, Object attribute)
+            throws InvocationTargetException, IllegalAccessException {
+        String convertedString = attribute.toString();
 
         if (variableInvocationList.size() <= 1) {
-            return attribute.toString();
+            return convertedString;
         }
 
         if (attribute != null) {
             for (Method method : attribute.getClass().getMethods()) {
                 if ((method.getName() + "()").equals(variableInvocationList.get(1))) {
-                    result = method.invoke(attribute);
+                    convertedString = method.invoke(attribute).toString();
                 }
             }
+        } else {
+            convertedString = String.join("\\.", variableInvocationList);
         }
 
-        return result.toString();
+        return convertedString;
     }
 }

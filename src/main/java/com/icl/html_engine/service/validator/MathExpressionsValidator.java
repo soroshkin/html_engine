@@ -4,7 +4,7 @@ import com.icl.html_engine.exception.EmptyExpressionException;
 import com.icl.html_engine.exception.IllegalCharacterException;
 import com.icl.html_engine.exception.IncorrectBracketsException;
 import com.icl.html_engine.exception.NotValidInputException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
 
@@ -12,7 +12,7 @@ import static com.icl.html_engine.enums.Messages.*;
 import static com.icl.html_engine.enums.RegularExpressionPatterns.INCORRECT_BRACKETS_PATTERN;
 import static com.icl.html_engine.enums.RegularExpressionPatterns.MATH_SYMBOLS_PATTERN;
 
-@Component
+@Service
 public class MathExpressionsValidator implements IValidator {
     @Override
     public void validate(String inputString) throws NotValidInputException {

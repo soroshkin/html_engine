@@ -1,8 +1,6 @@
 package com.icl.html_engine.service;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class Person {

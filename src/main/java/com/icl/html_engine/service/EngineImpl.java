@@ -4,7 +4,7 @@ import com.icl.html_engine.exception.NotValidInputException;
 import com.icl.html_engine.service.scanner.HtmlScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component
+@Service
 public class EngineImpl implements IEngine {
     private HtmlScanner<BigDecimal> mathExpressionsScanner;
     private HtmlScanner<String> variableScanner;
@@ -35,6 +35,7 @@ public class EngineImpl implements IEngine {
     /**
      * Scans HTML page for {} tags and parses them into math equation, standalone variable
      * or variable method.
+     *
      * @param inputString String representation of HTML page to be scanned
      * @return parsed HTML page as String
      * @throws NotValidInputException if variable or math equation contain illegal characters or wrong.
@@ -65,7 +66,8 @@ public class EngineImpl implements IEngine {
 
     /**
      * Adds attribute to context.
-     * @param name attribute name.
+     *
+     * @param name      attribute name.
      * @param attribute object.
      */
     @Override
